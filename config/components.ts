@@ -3,7 +3,7 @@ export const menus = [
     title: "Component",
     children: [
       "Alert",
-      "Backtop",
+      "BackTop",
       "Button",
       "Collapse",
       "Drawer",

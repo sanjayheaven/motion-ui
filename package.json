@@ -1,16 +1,15 @@
 {
   "private": true,
-  "name": "dumi-app",
+  "name": "motion-ui",
+  "version": "0.0.1",
   "scripts": {
-    "start": "dumi dev",
+    "dev": "dumi dev",
     "build": "dumi build",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
     "pretty": "pretty-quick --staged",
     "prepare": "husky install"
   },
   "main": "dist/index.js",
-  "module": "dist/index.esm.js",
-  "typings": "dist/index.d.ts",
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
@@ -32,6 +31,7 @@
   },
   "dependencies": {
     "ahooks": "^3.7.0",
-    "framer-motion": "^6.3.3"
+    "framer-motion": "^6.3.3",
+    "react": "^17.0.2"
   }
 }

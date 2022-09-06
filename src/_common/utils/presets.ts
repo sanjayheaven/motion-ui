@@ -94,26 +94,26 @@ export type IPreset =
   | "slideInRight"
   | "slideInBottom"
 
-export const presetMotionOptions: {
-  label: string
-  value: IPreset
-  motion: MotionProps
-}[] = [
-  { label: "Fade In", value: "fadeIn", motion: fadeIn },
-  { label: "Scale In", value: "scaleIn", motion: scaleIn },
-  { label: "Scale In Bottom", value: "scaleInBottom", motion: scaleInBottom },
-  { label: "Flip Horizontal", value: "flipHorizontal", motion: flipHorizontal },
-  { label: "Flip Vertical", value: "flipVertical", motion: flipVertical },
-  { label: "Slide In Top", value: "slideInTop", motion: slideInTop },
-  { label: "Slide In Left", value: "slideInLeft", motion: slideInLeft },
-  { label: "Slide In Right", value: "slideInRight", motion: slideInRight },
-  { label: "Slide In Bottom", value: "slideInBottom", motion: slideInBottom },
-]
+// export const presetMotionOptions: {
+//   label: string
+//   value: IPreset
+//   motion: MotionProps
+// }[] = [
+//   { label: "Fade In", value: "fadeIn", motion: fadeIn },
+//   { label: "Scale In", value: "scaleIn", motion: scaleIn },
+//   { label: "Scale In Bottom", value: "scaleInBottom", motion: scaleInBottom },
+//   { label: "Flip Horizontal", value: "flipHorizontal", motion: flipHorizontal },
+//   { label: "Flip Vertical", value: "flipVertical", motion: flipVertical },
+//   { label: "Slide In Top", value: "slideInTop", motion: slideInTop },
+//   { label: "Slide In Left", value: "slideInLeft", motion: slideInLeft },
+//   { label: "Slide In Right", value: "slideInRight", motion: slideInRight },
+//   { label: "Slide In Bottom", value: "slideInBottom", motion: slideInBottom },
+// ]
 
-export const presetMotionObj: {
-  [key in IPreset]?: MotionProps
-} = presetMotionOptions.reduce((acc, item) => {
-  // @ts-ignore
-  acc[item.value] = item.motion
-  return acc
-}, {})
+// export const presetMotionObj: {
+//   [key in IPreset]?: MotionProps
+// } = presetMotionOptions.reduce((acc, item) => {
+//   // @ts-ignore
+//   acc[item.value] = item.motion
+//   return acc
+// }, {})
