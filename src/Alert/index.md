@@ -1,8 +1,6 @@
 ---
 nav:
-#   path: /components/Alert
+  path: /components
 ---
 
 # Alert
-
-hello

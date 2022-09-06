@@ -31,7 +31,7 @@ export default defineConfig({
   menus: {
     "/": [{ title: "Home", path: "index" }],
     "/zh-CN": [{ title: "首页", path: "index" }],
-    "/zh-CN/components": menus,
     "/components": menus,
+    "/zh-CN/components": menus,
   },
 })

@@ -1,5 +1,20 @@
 export const menus = [
-  { title: "Alert", path: "Alert" },
+  {
+    title: "Component",
+    children: [
+      "Alert",
+      "Backtop",
+      "Button",
+      "Collapse",
+      "Drawer",
+      "Dropdown",
+      "message",
+      "Modal",
+      "notification",
+      "Popover",
+    ],
+  },
+
   // { title: "Button", path: "/Button" },
   // { title: "Backtop", path: "Backtop" },
 ]
