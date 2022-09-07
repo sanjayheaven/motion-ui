@@ -1,6 +1,6 @@
-<!-- <div align="center">
+<div align="center">
     <img  src="./public/logo.png" />
-</div> -->
+</div>
 
 <h1 align="center" 
     style="
