@@ -1,6 +1,6 @@
 export const menus = [
   {
-    title: "Component",
+    title: "Components",
     children: [
       "Alert",
       "BackTop",

@@ -7,7 +7,7 @@ export interface IPopProps {
   maskClosable?: boolean
   /** control the Drawer show or not */
   visible: boolean
-  /** Callback when Drawer closed */
+  /** Callback when Drawer close */
   onClose?: Function
   /** style of Mask */
   maskStyle?: CSSProperties

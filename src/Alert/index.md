@@ -11,7 +11,7 @@ something to describe
 
 ```tsx
 import React from "react"
-import { Alert } from "motion-ui"
+import { Alert } from "headless-motion"
 
 export default function Demo() {
   return (

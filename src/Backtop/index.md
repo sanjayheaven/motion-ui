@@ -11,7 +11,7 @@ something to describe
 
 ```tsx
 import React from "react"
-import { BackTop, slideInBottom } from "motion-ui"
+import { BackTop, slideInBottom } from "headless-motion"
 
 export default function Demo() {
   return (
