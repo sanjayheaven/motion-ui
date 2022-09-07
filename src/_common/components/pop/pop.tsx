@@ -34,7 +34,7 @@ export default function Pop({
           <motion.div
             onClick={() => maskClosable && handleChangeShow(false)}
             {...fadeIn}
-            className=" z-50 fixed top-0 bottom-0 left-0 right-0 bg-[#97979799] "
+            className=" z-[10001] fixed top-0 bottom-0 left-0 right-0 bg-[#97979799] "
             style={maskStyle}
           >
             {children}
