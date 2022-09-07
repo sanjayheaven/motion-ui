@@ -9,16 +9,17 @@ nav:
 
 ```tsx
 import React from "react"
-// import { CaretRight } from "phosphor-react"
+import { CaretRight } from "phosphor-react"
 import { Collapse } from "headless-motion"
 
 export default function Demo() {
   return (
     <Collapse
-      header={(show) => {
+      header={({ show }) => {
         return (
           <>
             <div className="bg-[#fafafa] p-2 flex items-center gap-2">
+              <CaretRight className={` transition-all ${(show && " rotate-90") || " rotate-0"}`} />
               <div>This is header</div>
             </div>
           </>

@@ -3,7 +3,11 @@ import BackTop from "./BackTop"
 import Button from "./Button"
 import Collapse from "./Collapse"
 import Drawer from "./Drawer"
+import message from "./message"
 import Modal from "./Modal"
+
+import Popover from "./Popover"
+
 export * from "./_common/utils/presets"
 
-export { Alert, BackTop, Button, Collapse, Drawer, Modal }
+export { Alert, BackTop, Button, Collapse, Drawer, message, Modal, Popover }

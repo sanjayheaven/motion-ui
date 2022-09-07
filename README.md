@@ -1,4 +1,15 @@
-<h1 align="center" >Motion UI </h1>
+<!-- <div align="center">
+    <img  src="./public/logo.png" />
+</div> -->
+
+<h1 align="center" 
+    style="
+        color:transparent; 
+        background: linear-gradient(to right, #06b6d4, #3b82f6);
+        -webkit-background-clip: text;
+    ">
+Headless Motion
+</h1>
 
 <div align="center">
 
