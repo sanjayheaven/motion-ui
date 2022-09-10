@@ -29,14 +29,13 @@ export default function useFileUpload({
     } else {
       // to compare if the item is all same
       for (const fileObj of fileObjList) {
-        if (!newFileObjList.find((i) => i.uuid == fileObj.uuid)) {
+        if (newFileObjList.find((i) => i.uuid == fileObj.uuid)) {
           shouldUpdate = true;
           break;
         }
       }
     }
-    if (!shouldUpdate && !forceUpdate) return;
-    console.log(9999, "fileObjList change");
+    if (shouldUpdate === false && forceUpdate == false) return;
 
     // update
     setFileObjList(newFileObjList);
@@ -55,7 +54,7 @@ export default function useFileUpload({
     const newFileObjList = [
       ...fileList.map((fileObj) => {
         const uuid = fileObj.uuid || generateUuid();
-        const url = fileObj.url || URL.createObjectURL(fileObj?.file!);
+        const url = fileObj.url || URL.createObjectURL(fileObj?.file);
         return { ...fileObj, uuid, url };
       }),
     ].slice(0, maxCount);

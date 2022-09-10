@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "dumi dev",
     "build": "dumi build",
-    "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prettier": "prettier --check .",
+    "prettier:fix": "prettier --write .",
     "pretty": "pretty-quick --staged",
     "prepare": "husky install"
   },
@@ -22,9 +25,14 @@
     ]
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
     "@types/react": "^18.0.18",
     "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.36.2",
+    "@typescript-eslint/parser": "^5.36.2",
     "dumi": "^1.0.13",
+    "eslint": "^8.23.0",
     "husky": "^8.0.1",
     "lint-staged": "^10.0.7",
     "prettier": "^2.2.1",
