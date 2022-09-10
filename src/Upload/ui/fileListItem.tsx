@@ -1,17 +1,17 @@
-import { Eye, Trash, XCircle } from "phosphor-react"
-import { useEffect, useState } from "react"
-import { IFileObj, IFileUploadProps } from "../type"
+import { Eye, Trash, XCircle } from "phosphor-react";
+import { useEffect, useState } from "react";
+import { IFileObj, IFileUploadProps } from "../type";
 
 interface IFileListItemProps {
-  fileObj: IFileObj
-  showPreview: IFileUploadProps["showPreview"]
-  showDelete: IFileUploadProps["showDelete"]
-  showTopRightClose: IFileUploadProps["showTopRightClose"]
-  width: IFileUploadProps["width"]
-  height: IFileUploadProps["height"]
-  onClick: Function
-  onPreview: Function
-  onDelete: Function
+  fileObj: IFileObj;
+  showPreview: IFileUploadProps["showPreview"];
+  showDelete: IFileUploadProps["showDelete"];
+  showTopRightClose: IFileUploadProps["showTopRightClose"];
+  width: IFileUploadProps["width"];
+  height: IFileUploadProps["height"];
+  onClick: Function;
+  onPreview: Function;
+  onDelete: Function;
 }
 export default function FileListItem({
   fileObj,
@@ -24,10 +24,10 @@ export default function FileListItem({
   width,
   height,
 }: IFileListItemProps) {
-  const [showHide, setShowHide] = useState(false)
+  const [showHide, setShowHide] = useState(false);
   useEffect(() => {
-    console.log("item render")
-  })
+    console.log("item render");
+  });
   return (
     <div
       onClick={() => onClick?.()}
@@ -47,7 +47,11 @@ export default function FileListItem({
 
       {/* image show */}
       <div className=" w-full h-full">
-        <img src={fileObj.url} className=" object-contain w-full h-full" alt="upload" />
+        <img
+          src={fileObj.url}
+          className=" object-contain w-full h-full"
+          alt="upload"
+        />
       </div>
 
       {/* hide shadow */}
@@ -56,12 +60,24 @@ export default function FileListItem({
           ${(showHide && "flex") || "hidden"}
           `}
       >
-        {(showPreview && <Eye onClick={() => onPreview?.()} size={20} className="cursor-pointer" />) || <></>}
+        {(showPreview && (
+          <Eye
+            onClick={() => onPreview?.()}
+            size={20}
+            className="cursor-pointer"
+          />
+        )) || <></>}
 
-        {(showDelete && <Trash onClick={() => onDelete?.()} size={20} className="cursor-pointer" />) || <></>}
+        {(showDelete && (
+          <Trash
+            onClick={() => onDelete?.()}
+            size={20}
+            className="cursor-pointer"
+          />
+        )) || <></>}
       </div>
     </div>
-  )
+  );
 }
 
 // export {}

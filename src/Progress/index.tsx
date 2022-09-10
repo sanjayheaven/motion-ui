@@ -1,17 +1,17 @@
-import { AnimatePresence, motion as Motion } from "framer-motion"
-import { isFunction } from "lodash"
-import { useEffect, useState } from "react"
-import { fadeIn } from "../_common/utils/presets"
-import { IProgressProps } from "./type"
+import { AnimatePresence, motion as Motion } from "framer-motion";
+import { isFunction } from "lodash";
+import { useEffect, useState } from "react";
+import { fadeIn } from "../_common/utils/presets";
+import { IProgressProps } from "./type";
 
 export default function Progress({ bar, trail, percent }: IProgressProps) {
-  const [innerPercet, setInnerPercet] = useState(0)
+  const [innerPercet, setInnerPercet] = useState(0);
 
   useEffect(() => {
-    if (percent <= 0) return setInnerPercet(0)
-    if (percent >= 100) return setInnerPercet(100)
-    setInnerPercet(percent)
-  }, [percent])
+    if (percent <= 0) return setInnerPercet(0);
+    if (percent >= 100) return setInnerPercet(100);
+    setInnerPercet(percent);
+  }, [percent]);
 
   return (
     <AnimatePresence>
@@ -29,5 +29,5 @@ export default function Progress({ bar, trail, percent }: IProgressProps) {
         )) || <></>}
       </Motion.div>
     </AnimatePresence>
-  )
+  );
 }

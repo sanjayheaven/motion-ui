@@ -1,11 +1,11 @@
-import { forwardRef, useEffect } from "react"
-import { useImperativeHandle } from "react"
-import { ImageSquare } from "phosphor-react"
-import PreviewModal from "./previewModal"
-import { IFileObj, IFileUploadProps } from "./type"
-import FileListItem from "./ui/fileListItem"
-import { UploadArea } from "./ui"
-import { useFileUpload } from "./hooks"
+import { forwardRef, useEffect } from "react";
+import { useImperativeHandle } from "react";
+import { ImageSquare } from "phosphor-react";
+import PreviewModal from "./previewModal";
+import { IFileObj, IFileUploadProps } from "./type";
+import FileListItem from "./ui/fileListItem";
+import { UploadArea } from "./ui";
+import { useFileUpload } from "./hooks";
 
 function FileUpload(
   {
@@ -24,7 +24,7 @@ function FileUpload(
     onClick,
     className,
   }: IFileUploadProps,
-  ref: any,
+  ref: any
 ) {
   // https://www.jianshu.com/p/7cdc223d8e97  ..
   const {
@@ -41,17 +41,17 @@ function FileUpload(
     fileList,
     maxCount,
     onChange,
-  })
+  });
 
   useEffect(() => {
-    console.log("fileUplaod render")
-  })
+    console.log("fileUplaod render");
+  });
 
   useImperativeHandle(ref, () => {
     return {
       callUpload: () => uploadAreaRef.current?.callUpload?.(),
-    }
-  })
+    };
+  });
 
   return (
     <>
@@ -69,7 +69,7 @@ function FileUpload(
                       onClick={() => onClick?.(fileObj, index)}
                       onPreview={() => {
                         if (onPreview) {
-                          onPreview(fileObj)
+                          onPreview(fileObj);
                         }
                         // else {
                         //   setPreviewItem({ ...fileObj })
@@ -85,7 +85,7 @@ function FileUpload(
                       height={height}
                     />
                   </>
-                )
+                );
               })}
             </>
           ) || <></>)}
@@ -109,7 +109,7 @@ function FileUpload(
       {/* preview Modal */}
       {/* <PreviewModal src={previewItem?.url} {...modal} /> */}
     </>
-  )
+  );
 }
 
-export default forwardRef(FileUpload)
+export default forwardRef(FileUpload);

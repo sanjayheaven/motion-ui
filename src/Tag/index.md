@@ -8,8 +8,8 @@ nav:
 ## Demo
 
 ```tsx
-import React, { useState } from "react"
-import { Tag } from "headless-motion"
+import React, { useState } from "react";
+import { Tag } from "headless-motion";
 
 export default function Demo() {
   return (
@@ -24,10 +24,10 @@ export default function Demo() {
               </div>
             </div>
           </>
-        )
+        );
       }}
     />
-  )
+  );
 }
 ```
 
