@@ -1,6 +1,6 @@
 export const menus = [
   {
-    title: "Components",
+    title: "Basic",
     children: [
       "Alert",
       "BackTop",
@@ -12,9 +12,16 @@ export const menus = [
       "Modal",
       "notification",
       "Popover",
+      "Progress",
+      "Skeleton",
+      "Tag",
     ],
+  },
+  {
+    title: "Advanced",
+    children: ["Carousel", "Upload"],
   },
 
   // { title: "Button", path: "/Button" },
   // { title: "Backtop", path: "Backtop" },
-]
+];

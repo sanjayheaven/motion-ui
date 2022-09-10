@@ -1,12 +1,14 @@
-import { defineConfig } from "dumi"
-import { menus } from "./components"
+import { defineConfig } from "dumi";
+import { IConfig } from "@umijs/types";
+import { menus } from "./components";
 
 export default defineConfig({
   logo: "/logo.png",
   favicon: "/logo.png",
   title: "Headless Motion",
   mode: "site",
-  // more config: https://d.umijs.org/config
+
+  // here tailwind only for documents
   scripts: [
     `https://cdn.tailwindcss.com`,
     `
@@ -42,6 +44,6 @@ export default defineConfig({
       .test(/.mjs$/)
       .include.add(/node_modules/)
       .end()
-      .type("javascript/auto")
+      .type("javascript/auto");
   },
-})
+} as IConfig);

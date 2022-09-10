@@ -1,4 +1,4 @@
-import { MotionProps } from "framer-motion"
+import { MotionProps } from "framer-motion";
 
 const transition: MotionProps["transition"] = {
   type: "spring",
@@ -6,7 +6,7 @@ const transition: MotionProps["transition"] = {
   damping: 30,
   mass: 1,
   delay: 0,
-}
+};
 const animate: MotionProps["animate"] = {
   x: 0,
   y: 0,
@@ -14,62 +14,62 @@ const animate: MotionProps["animate"] = {
   scale: 1,
   rotateY: 0,
   rotateX: 0,
-}
+};
 const fadeIn: MotionProps = {
   initial: { opacity: 0 },
   exit: { opacity: 0 },
   animate,
   transition,
-}
+};
 const scaleIn: MotionProps = {
   initial: { opacity: 0, scale: 0.5 },
   exit: { opacity: 0, scale: 0.5 },
   animate,
   transition,
-}
+};
 const scaleInBottom: MotionProps = {
   initial: { opacity: 0, scale: 0.5, y: 50 },
   exit: { opacity: 0, scale: 0.5, y: 50 },
   animate,
   transition,
-}
+};
 const flipHorizontal: MotionProps = {
   initial: { opacity: 1, rotateY: -180 },
   exit: { opacity: 1, rotateY: -180 },
   animate,
   transition,
-}
+};
 const flipVertical: MotionProps = {
   initial: { opacity: 1, rotateX: -180 },
   exit: { opacity: 1, rotateX: -180 },
 
   animate,
   transition,
-}
+};
 const slideInTop: MotionProps = {
   initial: { opacity: 0, y: -150 },
   exit: { opacity: 0, y: -150 },
   animate,
   transition,
-}
+};
 const slideInLeft: MotionProps = {
   initial: { opacity: 0, x: -150 },
   exit: { opacity: 0, x: -150 },
   animate,
   transition,
-}
+};
 const slideInRight: MotionProps = {
   initial: { opacity: 0, x: 150 },
   exit: { opacity: 0, x: 150 },
   animate,
   transition,
-}
+};
 const slideInBottom: MotionProps = {
   initial: { opacity: 0, y: 150 },
   exit: { opacity: 0, y: 150 },
   animate,
   transition,
-}
+};
 
 export {
   fadeIn,
@@ -81,7 +81,7 @@ export {
   slideInLeft,
   slideInRight,
   slideInBottom,
-}
+};
 
 export type IPreset =
   | "fadeIn"
@@ -92,7 +92,7 @@ export type IPreset =
   | "slideInTop"
   | "slideInLeft"
   | "slideInRight"
-  | "slideInBottom"
+  | "slideInBottom";
 
 // export const presetMotionOptions: {
 //   label: string
