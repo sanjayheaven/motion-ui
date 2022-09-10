@@ -1,30 +1,36 @@
 /** when content is a function type, expost those props outside for use */
 
-import { MotionProps } from "framer-motion"
-import { ReactNode } from "react"
+import { MotionProps } from "framer-motion";
+import { ReactNode } from "react";
 
 interface IContentFunctionProps {
   /** a function to close item  */
-  close?: Function
+  close?: Function;
 }
 
-export type Placement = "top" | "bottom" | "topLeft" | "topRight" | "bottomLeft" | "bottomRight"
+export type Placement =
+  | "top"
+  | "bottom"
+  | "topLeft"
+  | "topRight"
+  | "bottomLeft"
+  | "bottomRight";
 
 export interface INotificationConfig {
   /** motion  */
-  motion?: MotionProps
+  motion?: MotionProps;
   /** position or notification */
-  placement?: Placement
+  placement?: Placement;
   /** content of the notification */
-  content?: ReactNode | (({}: IContentFunctionProps) => ReactNode)
+  content?: ReactNode | (({}: IContentFunctionProps) => ReactNode);
   /** time for notification exist. Won't exit is set to zero */
-  duration?: number
+  duration?: number;
   /** callback when a notification item is clicked */
-  onClick?: Function
+  onClick?: Function;
   /** callback when a notification item is closed */
-  onClose?: Function
+  onClose?: Function;
   /** unique key for each notification*/
-  key?: string
+  key?: string;
   /** */
-  top?: number
+  top?: number;
 }

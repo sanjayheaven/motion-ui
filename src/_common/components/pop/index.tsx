@@ -1,4 +1,4 @@
-import Pop from "./pop"
+import Pop from "./pop";
 
-export * from "./type"
-export { Pop }
+export * from "./type";
+export { Pop };

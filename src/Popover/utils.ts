@@ -1,11 +1,11 @@
-import { CSSProperties } from "react"
+import { CSSProperties } from "react";
 
 /** be careful to change  */
 export const calcStyle: (
   width: number,
-  height: number,
+  height: number
 ) => {
-  [key: string]: CSSProperties
+  [key: string]: CSSProperties;
 } = (width: number, height: number) => {
   return {
     topLeft: {
@@ -45,11 +45,13 @@ export const calcStyle: (
     },
     right: {
       top: 0,
-      transform: `translateX(${width}px) translateY(calc(${height / 2}px - 50%))`,
+      transform: `translateX(${width}px) translateY(calc(${
+        height / 2
+      }px - 50%))`,
     },
     rightBottom: {
       bottom: 0,
       transform: `translateX(${width}px) `,
     },
-  }
-}
+  };
+};

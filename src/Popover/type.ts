@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from "react"
+import { ReactElement, ReactNode } from "react";
 
 export type Placement =
   | "topLeft"
@@ -12,25 +12,25 @@ export type Placement =
   | "bottomRight"
   | "rightTop"
   | "right"
-  | "rightBottom"
+  | "rightBottom";
 
-export type Trigger = "hover" | "click" | "focus" | "contextMenu"
+export type Trigger = "hover" | "click" | "focus" | "contextMenu";
 
 export interface IPopoverProps {
   /**  pop content  */
-  content?: ReactNode
+  content?: ReactNode;
   /** ReactElement, make sure children can accept onMouseEnter, onMouseLeave, onFocus, onBlur, onClick events */
-  children?: ReactElement
+  children?: ReactElement;
   /** position of pop content  */
-  placement?: Placement
+  placement?: Placement;
   /** trigger to show pop content  */
-  trigger?: Trigger
+  trigger?: Trigger;
   /** time delay to set pop content show */
-  mouseEnterDelay?: number
+  mouseEnterDelay?: number;
   /** time delay to set pop content hide */
-  mouseLeaveDelay?: number
+  mouseLeaveDelay?: number;
   /** controll the visibility of pop content */
-  visible?: boolean
+  visible?: boolean;
   /** callback when pop content show/hide */
-  onVisibleChange?: Function
+  onVisibleChange?: Function;
 }

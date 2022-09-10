@@ -8,18 +8,20 @@ nav:
 ## Demo
 
 ```tsx
-import React, { useState } from "react"
-import { Popover, Button as BasicButton } from "headless-motion"
+import React, { useState } from "react";
+import { Popover, Button as BasicButton } from "headless-motion";
 
 export default function Demo() {
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(false);
 
   const content = (
     <>
-      <div className=" w-[100px] h-[120px] bg-white drop-shadow-xl p-2">Hello, this is content!</div>
+      <div className=" w-[100px] h-[120px] bg-white drop-shadow-xl p-2">
+        Hello, this is content!
+      </div>
     </>
-  )
-  const buttonWidth = 70
+  );
+  const buttonWidth = 70;
   const Button = ({ children }: { children: ReactNode }) => {
     return (
       <BasicButton>
@@ -30,8 +32,8 @@ export default function Demo() {
           {children}
         </div>
       </BasicButton>
-    )
-  }
+    );
+  };
   return (
     <>
       <div>
@@ -69,7 +71,11 @@ export default function Demo() {
             </div>
           </Popover>
         </div>
-        <div className={` ml-[${buttonWidth * 4 + 16}px] w-[${buttonWidth}px] flex flex-col gap-2`}>
+        <div
+          className={` ml-[${
+            buttonWidth * 4 + 16
+          }px] w-[${buttonWidth}px] flex flex-col gap-2`}
+        >
           <Popover placement="rightTop" content={content}>
             <div>
               <Button> RT</Button>
@@ -105,7 +111,7 @@ export default function Demo() {
         </div>
       </div>
     </>
-  )
+  );
 }
 ```
 

@@ -10,8 +10,8 @@ something to describe
 ## Demo
 
 ```tsx
-import React from "react"
-import { Alert } from "headless-motion"
+import React from "react";
+import { Alert } from "headless-motion";
 
 export default function Demo() {
   return (
@@ -26,10 +26,10 @@ export default function Demo() {
               </div>
             </div>
           </>
-        )
+        );
       }}
     </Alert>
-  )
+  );
 }
 ```
 

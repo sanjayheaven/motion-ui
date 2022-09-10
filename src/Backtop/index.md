@@ -10,8 +10,8 @@ something to describe
 ## Demo
 
 ```tsx
-import React from "react"
-import { BackTop, slideInBottom } from "headless-motion"
+import React from "react";
+import { BackTop, slideInBottom } from "headless-motion";
 
 export default function Demo() {
   return (
@@ -21,11 +21,13 @@ export default function Demo() {
       right={200}
       children={
         <>
-          <div className=" rounded-[50%] opacity-40 hover:opacity-100 p-4 bg-[red] cursor-pointer">Up</div>
+          <div className=" rounded-[50%] opacity-40 hover:opacity-100 p-4 bg-[red] cursor-pointer">
+            Up
+          </div>
         </>
       }
     />
-  )
+  );
 }
 ```
 

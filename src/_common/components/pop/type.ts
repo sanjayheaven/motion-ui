@@ -1,16 +1,16 @@
-import { CSSProperties, ReactNode } from "react"
+import { CSSProperties, ReactNode } from "react";
 
 export interface IPopProps {
   /** allow press ESC to close the Drawer, default true */
-  keyboard?: boolean
+  keyboard?: boolean;
   /** allow Click the mask to close the Drawer, default true */
-  maskClosable?: boolean
+  maskClosable?: boolean;
   /** control the Drawer show or not */
-  visible: boolean
+  visible: boolean;
   /** Callback when Drawer close */
-  onClose?: Function
+  onClose?: Function;
   /** style of Mask */
-  maskStyle?: CSSProperties
+  maskStyle?: CSSProperties;
   /** Chilren  */
-  children?: ReactNode
+  children?: ReactNode;
 }

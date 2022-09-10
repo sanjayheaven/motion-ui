@@ -8,15 +8,14 @@ nav:
 ## Demo
 
 ```tsx
-import React, { useState } from "react"
-import { Popover, Button, message } from "headless-motion"
+import React, { useState } from "react";
+import { Button, message } from "headless-motion";
 
 export default function Demo() {
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(false);
 
   return (
     <Button
-      motion={{ whileTap: { scale: 0.9 } }}
       onClick={() => {
         message.open({
           content: ({ close }) => {
@@ -27,14 +26,14 @@ export default function Demo() {
                   X
                 </div>
               </div>
-            )
+            );
           },
-        })
+        });
       }}
     >
       <div className=" cursor-pointer p-2 bg-purple-300">Message</div>
     </Button>
-  )
+  );
 }
 ```
 

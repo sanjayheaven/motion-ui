@@ -1,9 +1,15 @@
-import { AnimatePresence, motion } from "framer-motion"
-import { useEffect, useState } from "react"
-import { createPortal } from "react-dom"
-import { fadeIn } from "../../utils/presets"
-import { useEventListener } from "ahooks"
-import { IPopProps } from "./type"
+import { AnimatePresence, motion } from "framer-motion";
+import {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
+import { createPortal } from "react-dom";
+import { fadeIn } from "../../utils/presets";
+import { useEventListener } from "ahooks";
+import { IPopProps } from "./type";
 
 /** Pop is the basic Component for Drawer & Modal */
 export default function Pop({
@@ -14,18 +20,18 @@ export default function Pop({
   keyboard = true,
   maskStyle,
 }: IPopProps) {
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
   const handleChangeShow = (show: boolean) => {
-    setShow(show)
-    if (!show) onClose?.()
-  }
-  useEffect(() => handleChangeShow(visible), [visible])
+    setShow(show);
+    if (!show) onClose?.();
+  };
+  useEffect(() => handleChangeShow(visible), [visible]);
   useEventListener("keydown", (e) => {
-    if (!keyboard) return
+    if (!keyboard) return;
     if (e.code == "Escape") {
-      show && handleChangeShow(false)
+      show && handleChangeShow(false);
     }
-  })
+  });
 
   let dialog = (
     <>
@@ -34,7 +40,7 @@ export default function Pop({
           <motion.div
             onClick={() => maskClosable && handleChangeShow(false)}
             {...fadeIn}
-            className=" z-[10001] fixed top-0 bottom-0 left-0 right-0 bg-[#97979799] "
+            className=" z-[10001] fixed top-0 bottom-0 left-0 right-0 bg-[#97979799] m-auto"
             style={maskStyle}
           >
             {children}
@@ -42,6 +48,6 @@ export default function Pop({
         )}
       </AnimatePresence>
     </>
-  )
-  return createPortal(dialog, document.body)
+  );
+  return createPortal(dialog, document.body);
 }

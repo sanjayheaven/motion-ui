@@ -1,27 +1,26 @@
-import { AnimatePresence, motion as Motion } from "framer-motion"
-import { useState } from "react"
-import { fadeIn } from "../../utils/presets"
-import { ICloseProps } from "./type"
+import { AnimatePresence, motion as Motion } from "framer-motion";
+import { useState } from "react";
+import { fadeIn } from "../../utils/presets";
+import { ICloseProps } from "./type";
 
 export default function Close({
   children,
   onClose,
-  // className = "",
+  className = "",
   motion,
 }: ICloseProps) {
-  const [show, setShow] = useState(true)
+  const [show, setShow] = useState(true);
 
   const handleChangeShow = (show: boolean) => {
-    setShow(show)
-    if (!show) onClose?.()
-  }
+    setShow(show);
+    if (!show) onClose?.();
+  };
 
-  console.log(motion, 1828288)
   return (
     <>
       <AnimatePresence initial={false}>
         {show && (
-          <Motion.div {...fadeIn} {...motion}>
+          <Motion.div {...fadeIn} {...motion} className={className}>
             {typeof children == "function"
               ? children?.({
                   close: () => handleChangeShow(false),
@@ -31,5 +30,5 @@ export default function Close({
         )}
       </AnimatePresence>
     </>
-  )
+  );
 }

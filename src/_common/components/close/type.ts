@@ -1,17 +1,17 @@
-import { MotionProps } from "framer-motion"
-import { ReactNode } from "react"
+import { MotionProps } from "framer-motion";
+import { ReactNode } from "react";
 
 type IFunctionTypeProps = {
-  close: Function
-}
+  close: Function;
+};
 export interface ICloseProps {
   /** style of children */
-  className?: string
+  className?: string;
 
   /** children in Tag */
-  children?: ReactNode | (({ close }: IFunctionTypeProps) => ReactNode)
+  children?: ReactNode | (({ close }: IFunctionTypeProps) => ReactNode);
   /** callback when item close */
-  onClose?: Function
+  onClose?: Function;
   /** motion */
-  motion?: MotionProps
+  motion?: MotionProps;
 }

@@ -1,18 +1,17 @@
-import type { INotificationConfig, Placement } from "./type"
-
-import { AnimatePresence, motion as Motion } from "framer-motion"
-import { useEffect, useState } from "react"
-import { createRoot } from "react-dom/client"
-import { slideInRight, slideInTop } from "../_common/utils/presets"
-import { slideInBottom, slideInLeft } from "../_common/utils/presets"
+import type { INotificationConfig, Placement } from "./type";
+import { AnimatePresence, motion as Motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { createRoot } from "react-dom/client";
+import { slideInRight, slideInTop } from "../_common/utils/presets";
+import { slideInBottom, slideInLeft } from "../_common/utils/presets";
 
 /** auto generate key for each notification item */
 const generateKey = () => {
-  return `motion-ui-notification-${new Date().getTime()}`
-}
+  return `motion-ui-notification-${new Date().getTime()}`;
+};
 
 const placementMotionMap: {
-  [key in Placement]?: INotificationConfig["motion"]
+  [key in Placement]?: INotificationConfig["motion"];
 } = {
   topLeft: slideInLeft,
   topRight: slideInRight,
@@ -20,72 +19,75 @@ const placementMotionMap: {
   bottomRight: slideInRight,
   top: slideInTop,
   bottom: slideInBottom,
-}
+};
 
 /** default config  */
-const MAX_COUNT = 0
+// const MAX_COUNT = 0;
 
 const defaultConfig: INotificationConfig = {
   duration: 4.5,
   placement: "topRight",
   top: 24,
-}
+};
 
-let destroy: () => void = undefined
-let remove: (key: string) => void = undefined
-let add: (config: INotificationConfig) => void = undefined
+let destroy: () => void = undefined;
+let remove: (key: string) => void = undefined;
+let add: (config: INotificationConfig) => void = undefined;
 
 function NotificationContainer() {
-  const [data, setData] = useState<INotificationConfig[]>([])
+  const [data, setData] = useState<INotificationConfig[]>([]);
 
   useEffect(() => {
     /** remove all data */
-    destroy = () => setData([])
+    destroy = () => setData([]);
 
     /** remove messgae item by key */
     remove = (key: string) => {
       setData((previousData) => {
-        let previousItem = previousData.find((i) => i.key == key)
+        const previousItem = previousData.find((i) => i.key == key);
         if (previousItem) {
-          previousItem?.onClose?.()
+          previousItem?.onClose?.();
         }
-        return previousData.filter((i) => i.key != key)
-      })
-    }
+        return previousData.filter((i) => i.key != key);
+      });
+    };
     /** add item  */
     add = (config: INotificationConfig) => {
-      let { key, duration } = config
-      setData((previousData) => [...previousData, config])
+      const { key, duration } = config;
+      setData((previousData) => [...previousData, config]);
       /** duration equal 0, then won't remove */
-      if (!duration) return
-      setTimeout(() => remove(key), duration * 1000)
-    }
-  }, [])
+      if (!duration) return;
+      setTimeout(() => remove(key), duration * 1000);
+    };
+  }, []);
 
-  let topData = data.filter((i) => i.placement == "top")
-  let bottomData = data.filter((i) => i.placement == "bottom")
-  let topLeftData = data.filter((i) => i.placement == "topLeft")
-  let topRightData = data.filter((i) => i.placement == "topRight")
-  let bottomLeftData = data.filter((i) => i.placement == "bottomLeft")
-  let bottomRightData = data.filter((i) => i.placement == "bottomRight")
+  const topData = data.filter((i) => i.placement == "top");
+  const bottomData = data.filter((i) => i.placement == "bottom");
+  const topLeftData = data.filter((i) => i.placement == "topLeft");
+  const topRightData = data.filter((i) => i.placement == "topRight");
+  const bottomLeftData = data.filter((i) => i.placement == "bottomLeft");
+  const bottomRightData = data.filter((i) => i.placement == "bottomRight");
 
   const createItemsContainer = (items?: typeof data) => {
     return (
       <AnimatePresence initial={false}>
         {items.map((item, index) => {
-          let { content, key, placement, motion, top } = item
-          motion = motion ? motion : placementMotionMap[placement]
+          const { content, key, placement, top } = item;
+          let { motion } = item;
+          motion = motion ? motion : placementMotionMap[placement];
           return (
             <Motion.div key={key} {...motion} style={{ marginTop: top }}>
               <div className=" pointer-events-auto">
-                {typeof content == "function" ? content?.({ close: () => remove(key) }) : content}
+                {typeof content == "function"
+                  ? content?.({ close: () => remove(key) })
+                  : content}
               </div>
             </Motion.div>
-          )
+          );
         })}
       </AnimatePresence>
-    )
-  }
+    );
+  };
 
   return (
     <>
@@ -98,37 +100,45 @@ function NotificationContainer() {
           <div>{createItemsContainer(bottomData)}</div>
         </div>
 
-        <div className=" absolute top-0 left-0">{createItemsContainer(topLeftData)}</div>
+        <div className=" absolute top-0 left-0">
+          {createItemsContainer(topLeftData)}
+        </div>
 
-        <div className=" absolute top-0 right-0">{createItemsContainer(topRightData)}</div>
+        <div className=" absolute top-0 right-0">
+          {createItemsContainer(topRightData)}
+        </div>
 
-        <div className=" absolute bottom-0 left-0">{createItemsContainer(bottomLeftData)}</div>
+        <div className=" absolute bottom-0 left-0">
+          {createItemsContainer(bottomLeftData)}
+        </div>
 
-        <div className=" absolute bottom-0 right-0">{createItemsContainer(bottomRightData)}</div>
+        <div className=" absolute bottom-0 right-0">
+          {createItemsContainer(bottomRightData)}
+        </div>
       </div>
     </>
-  )
+  );
 }
 
 const creaetNotificationWrapper = () => {
-  let el = document.querySelector("#motion-ui-notification-wrapper")
+  let el = document.querySelector("#motion-ui-notification-wrapper");
   if (!el) {
-    el = document.createElement("div")
-    el.className = "motion-ui-notification-wrapper"
-    el.id = "motion-ui-notification-wrapper"
-    document.body.append(el)
-    let root = createRoot(el)
-    root.render(<NotificationContainer />)
+    el = document.createElement("div");
+    el.className = "motion-ui-notification-wrapper";
+    el.id = "motion-ui-notification-wrapper";
+    document.body.append(el);
+    let root = createRoot(el);
+    root.render(<NotificationContainer />);
   }
-}
-creaetNotificationWrapper()
+};
+creaetNotificationWrapper();
 
 export default {
   open: (config: INotificationConfig) => {
-    add?.({ ...defaultConfig, key: generateKey(), ...config })
+    add?.({ ...defaultConfig, key: generateKey(), ...config });
   },
   close: (key: string) => {
-    remove?.(key)
+    remove?.(key);
   },
   destroy,
   /** global config */
@@ -137,4 +147,4 @@ export default {
   //     defaultConfig[key] = config[key]
   //   }
   // },
-}
+};

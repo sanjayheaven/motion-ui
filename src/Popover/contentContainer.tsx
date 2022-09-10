@@ -1,6 +1,14 @@
-import type { Placement } from "./type"
+import type { Placement } from "./type";
 
-import { RefObject, ReactNode, useReducer, useMemo, useEffect, CSSProperties, MouseEventHandler } from "react"
+import {
+  RefObject,
+  ReactNode,
+  useReducer,
+  useMemo,
+  useEffect,
+  CSSProperties,
+  MouseEventHandler,
+} from "react";
 
 export default function ContentContainer({
   placement = "bottomLeft",
@@ -9,23 +17,23 @@ export default function ContentContainer({
   onMoustEnter,
   onMoustLeave,
 }: {
-  placement?: Placement
-  content?: ReactNode
-  childrenRef?: RefObject<HTMLDivElement>
-  onMoustEnter?: MouseEventHandler<HTMLDivElement>
-  onMoustLeave?: MouseEventHandler<HTMLDivElement>
+  placement?: Placement;
+  content?: ReactNode;
+  childrenRef?: RefObject<HTMLDivElement>;
+  onMoustEnter?: MouseEventHandler<HTMLDivElement>;
+  onMoustLeave?: MouseEventHandler<HTMLDivElement>;
 }) {
-  const [_, forceUpdate] = useReducer((x) => x + 1, 0)
-  const scrollTop = document.documentElement.scrollTop
+  const [_, forceUpdate] = useReducer((x) => x + 1, 0);
+  const scrollTop = document.documentElement.scrollTop;
 
   let { left, top, height, width }: Partial<DOMRect> = useMemo(() => {
-    if (!childrenRef.current) return {}
-    let info = childrenRef.current?.getBoundingClientRect() || {}
-    return info
-  }, [childrenRef.current, _])
+    if (!childrenRef.current) return {};
+    let info = childrenRef.current?.getBoundingClientRect() || {};
+    return info;
+  }, [childrenRef.current, _]);
 
   const positionStyle: {
-    [key: string]: CSSProperties
+    [key: string]: CSSProperties;
   } = useMemo(() => {
     return {
       bottom: {
@@ -48,7 +56,9 @@ export default function ContentContainer({
         transform: `translateX(calc(${width}px - 100%))  translateY(-100%)`,
       },
       left: {
-        transform: `translateX(-100%) translateY(calc(-${height / 2}px - 50%)) `,
+        transform: `translateX(-100%) translateY(calc(-${
+          height / 2
+        }px - 50%)) `,
       },
       leftTop: {
         top: top + scrollTop,
@@ -58,7 +68,9 @@ export default function ContentContainer({
         transform: `translateX(-100%) translateY(-100%) `,
       },
       right: {
-        transform: `translateX(${width}px) translateY(calc(-${height / 2}px - 50%)) `,
+        transform: `translateX(${width}px) translateY(calc(-${
+          height / 2
+        }px - 50%)) `,
       },
       rightTop: {
         top: top + scrollTop,
@@ -67,14 +79,14 @@ export default function ContentContainer({
       rightBottom: {
         transform: `translateX(${width}px) translateY(-100%) `,
       },
-    }
-  }, [placement, width, top, scrollTop])
+    };
+  }, [placement, width, top, scrollTop]);
 
   useEffect(() => {
-    const handler = () => forceUpdate()
-    window.addEventListener("resize", handler)
-    return () => window.removeEventListener("resize", handler)
-  }, [])
+    const handler = () => forceUpdate();
+    window.addEventListener("resize", handler);
+    return () => window.removeEventListener("resize", handler);
+  }, []);
 
   return useMemo(
     () => (
@@ -91,6 +103,6 @@ export default function ContentContainer({
         {content}
       </div>
     ),
-    [content, top, height, scrollTop, left, placement],
-  )
+    [content, top, height, scrollTop, left, placement]
+  );
 }
