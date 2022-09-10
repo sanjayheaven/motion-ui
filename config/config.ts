@@ -38,7 +38,7 @@ export default defineConfig({
     "/components": menus,
     "/zh-CN/components": menus,
   },
-  chainWebpack: (config: any) => {
+  chainWebpack: (config) => {
     config.module
       .rule("mjs$")
       .test(/.mjs$/)

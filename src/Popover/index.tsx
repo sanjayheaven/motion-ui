@@ -19,7 +19,7 @@ export default function Popover({
   const [show, setShow] = useState(false);
   const childrenRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const delayTimerRef = useRef<any>(null);
+  const delayTimerRef = useRef<NodeJS.Timeout>(null);
 
   const handleChangeShow = useCallback((value: boolean) => {
     setShow(value);

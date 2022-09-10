@@ -3,18 +3,18 @@
 import { ReactNode } from "react";
 
 export interface IContentFunctionProps {
-  close?: Function;
+  close?: () => void;
 }
 
 export interface IMessageConfig {
   /** content of the message */
-  content?: ReactNode | (({}: IContentFunctionProps) => ReactNode);
+  content?: ReactNode | (({ close }: IContentFunctionProps) => ReactNode);
   /** time for message exist. Won't exit is set to zero */
   duration?: number;
   /** callback when a message item is clicked */
-  onClick?: Function;
+  onClick?: () => void;
   /** callback when a message item is closed */
-  onClose?: Function;
+  onClose?: () => void;
   /** unique key for each message*/
   key?: string;
   /** distance from the top for each message item */

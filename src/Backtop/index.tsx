@@ -15,7 +15,7 @@ export default function BackTop({
   const scroll = useScroll();
   const [show, setShow] = useState(false);
 
-  const { top = 0, left } = scroll || {};
+  const { top = 0 } = scroll || {};
   useEffect(() => {
     if (top <= height) return setShow(false);
     if (top >= height && show) return;

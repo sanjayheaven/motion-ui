@@ -22,7 +22,7 @@ export default function Drawer({
   children,
   ...props
 }: IDrawerProps) {
-  let placementOption = placementOptions[placement];
+  const placementOption = placementOptions[placement];
   return (
     <Pop {...props}>
       <motion.div

@@ -26,9 +26,9 @@ export default function ContentContainer({
   const [_, forceUpdate] = useReducer((x) => x + 1, 0);
   const scrollTop = document.documentElement.scrollTop;
 
-  let { left, top, height, width }: Partial<DOMRect> = useMemo(() => {
+  const { left, top, height, width }: Partial<DOMRect> = useMemo(() => {
     if (!childrenRef.current) return {};
-    let info = childrenRef.current?.getBoundingClientRect() || {};
+    const info = childrenRef.current?.getBoundingClientRect() || {};
     return info;
   }, [childrenRef.current, _]);
 

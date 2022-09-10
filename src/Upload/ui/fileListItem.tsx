@@ -9,9 +9,9 @@ interface IFileListItemProps {
   showTopRightClose: IFileUploadProps["showTopRightClose"];
   width: IFileUploadProps["width"];
   height: IFileUploadProps["height"];
-  onClick: Function;
-  onPreview: Function;
-  onDelete: Function;
+  onClick: () => void;
+  onPreview: () => void;
+  onDelete: () => void;
 }
 export default function FileListItem({
   fileObj,

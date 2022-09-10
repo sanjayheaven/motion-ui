@@ -1,11 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { fadeIn } from "../../utils/presets";
 import { useEventListener } from "ahooks";
@@ -33,7 +27,7 @@ export default function Pop({
     }
   });
 
-  let dialog = (
+  const dialog = (
     <>
       <AnimatePresence>
         {show && (

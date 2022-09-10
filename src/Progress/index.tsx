@@ -1,5 +1,5 @@
 import { AnimatePresence, motion as Motion } from "framer-motion";
-import { isFunction } from "lodash";
+
 import { useEffect, useState } from "react";
 import { fadeIn } from "../_common/utils/presets";
 import { IProgressProps } from "./type";

@@ -19,7 +19,7 @@ export default function useFileUpload({
   // const { modal, setModal } = useModal()
   // const { selectedItem: previewItem, setSelectedItem: setPreviewItem } =
   //   useSelectedItem<Partial<IFileObj>>({})
-  const uploadAreaRef = useRef<any>(null);
+  const uploadAreaRef = useRef(null);
 
   const update = (newFileObjList: IFileObj[], forceUpdate?: boolean) => {
     // compare to update
@@ -28,7 +28,7 @@ export default function useFileUpload({
       shouldUpdate = true;
     } else {
       // to compare if the item is all same
-      for (let fileObj of fileObjList) {
+      for (const fileObj of fileObjList) {
         if (!newFileObjList.find((i) => i.uuid == fileObj.uuid)) {
           shouldUpdate = true;
           break;
@@ -52,10 +52,10 @@ export default function useFileUpload({
 
   useEffect(() => {
     // if (!fileList.length) return
-    let newFileObjList = [
+    const newFileObjList = [
       ...fileList.map((fileObj) => {
-        let uuid = fileObj.uuid || generateUuid();
-        let url = fileObj.url || URL.createObjectURL(fileObj?.file!);
+        const uuid = fileObj.uuid || generateUuid();
+        const url = fileObj.url || URL.createObjectURL(fileObj?.file!);
         return { ...fileObj, uuid, url };
       }),
     ].slice(0, maxCount);
@@ -67,9 +67,8 @@ export default function useFileUpload({
   };
 
   const imageChange = (e: ChangeEvent<HTMLInputElement>) => {
-    let files = e.target.files || [];
-    console.log(files, 2888);
-    let newFileObjList = [
+    const files = e.target.files || [];
+    const newFileObjList = [
       ...fileObjList,
       ...[...Object.values(files)].map((file: File) => {
         return { file, uuid: generateUuid(), url: URL.createObjectURL(file) };
@@ -79,8 +78,8 @@ export default function useFileUpload({
   };
   const imageChangeDrop = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    let files = e.dataTransfer.files || [];
-    let newFileObjList = [
+    const files = e.dataTransfer.files || [];
+    const newFileObjList = [
       ...fileObjList,
       ...[...Object.values(files)].map((file: File) => {
         return { file, uuid: generateUuid(), url: URL.createObjectURL(file) };

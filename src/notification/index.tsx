@@ -71,7 +71,7 @@ function NotificationContainer() {
   const createItemsContainer = (items?: typeof data) => {
     return (
       <AnimatePresence initial={false}>
-        {items.map((item, index) => {
+        {items.map((item) => {
           const { content, key, placement, top } = item;
           let { motion } = item;
           motion = motion ? motion : placementMotionMap[placement];
@@ -127,7 +127,7 @@ const creaetNotificationWrapper = () => {
     el.className = "motion-ui-notification-wrapper";
     el.id = "motion-ui-notification-wrapper";
     document.body.append(el);
-    let root = createRoot(el);
+    const root = createRoot(el);
     root.render(<NotificationContainer />);
   }
 };

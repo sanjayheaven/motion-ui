@@ -10,5 +10,5 @@ export interface IBackTopProps {
   right?: number;
 
   motion?: MotionProps;
-  onClick?: Function;
+  onClick?: () => void;
 }

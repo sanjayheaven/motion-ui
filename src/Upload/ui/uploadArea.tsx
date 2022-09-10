@@ -1,3 +1,4 @@
+import type { DragEvent, ChangeEvent, RefObject } from "react";
 import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import { IFileUploadProps } from "../type";
 
@@ -6,12 +7,12 @@ interface IUploadAreaProps {
   height: IFileUploadProps["height"];
   uploadIcon: IFileUploadProps["uploadIcon"];
   multiple: IFileUploadProps["multiple"];
-  onDrop: Function;
-  onChange: Function;
+  onDrop: (e: DragEvent<HTMLDivElement>) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 function UploadArea(
   { width, height, onDrop, onChange, uploadIcon, multiple }: IUploadAreaProps,
-  ref: any
+  ref: RefObject<unknown>
 ) {
   const [dragFlag, setDragFlag] = useState(false);
   const uploadRef = useRef<HTMLInputElement>(null);

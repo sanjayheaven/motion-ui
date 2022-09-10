@@ -8,7 +8,7 @@ export interface IPopProps {
   /** control the Drawer show or not */
   visible: boolean;
   /** Callback when Drawer close */
-  onClose?: Function;
+  onClose?: () => void;
   /** style of Mask */
   maskStyle?: CSSProperties;
   /** Chilren  */

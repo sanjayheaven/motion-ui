@@ -1,5 +1,4 @@
 import { motion as Motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
 import { Pop } from "../_common/components/pop";
 import { slideInTop } from "../_common/utils/presets";
 import { IModalProps } from "./type";

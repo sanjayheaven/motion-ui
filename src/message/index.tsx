@@ -32,7 +32,7 @@ function MessageContainer() {
   /** remove messgae item by key */
   const remove = (key: string) => {
     setData((previousData) => {
-      let previousItem = previousData.find((i) => i.key == key);
+      const previousItem = previousData.find((i) => i.key == key);
       if (previousItem) {
         previousItem?.onClose?.();
       }
@@ -46,7 +46,7 @@ function MessageContainer() {
       key ? remove(key) : setData([]);
 
     add = (config: IMessageConfig) => {
-      let { key, duration, onClose } = config;
+      const { key, duration } = config;
       setData((previousData) => [...previousData, config]);
       /** duration equal 0, then won't remove */
       if (!duration) return;
@@ -58,8 +58,8 @@ function MessageContainer() {
     <div className=" z-[10001] fixed top-0 left-0 right-0 flex justify-center pointer-events-none">
       <div>
         <AnimatePresence initial={false}>
-          {data.map((item, index) => {
-            let { content, key, top } = item;
+          {data.map((item) => {
+            const { content, key, top } = item;
             return (
               <motion.div
                 key={key}
@@ -88,7 +88,7 @@ const creaetMessageWrapper = () => {
     el.className = "motion-ui-message-wrapper";
     el.id = "motion-ui-message-wrapper";
     document.body.append(el);
-    let root = createRoot(el);
+    const root = createRoot(el);
     root.render(<MessageContainer />);
   }
 };

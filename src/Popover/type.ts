@@ -32,5 +32,5 @@ export interface IPopoverProps {
   /** controll the visibility of pop content */
   visible?: boolean;
   /** callback when pop content show/hide */
-  onVisibleChange?: Function;
+  onVisibleChange?: (value?: boolean) => void;
 }

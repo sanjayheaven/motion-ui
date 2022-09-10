@@ -1,7 +1,6 @@
-import { forwardRef, useEffect } from "react";
+import { forwardRef, RefObject, useEffect } from "react";
 import { useImperativeHandle } from "react";
 import { ImageSquare } from "phosphor-react";
-import PreviewModal from "./previewModal";
 import { IFileObj, IFileUploadProps } from "./type";
 import FileListItem from "./ui/fileListItem";
 import { UploadArea } from "./ui";
@@ -24,7 +23,7 @@ function FileUpload(
     onClick,
     className,
   }: IFileUploadProps,
-  ref: any
+  ref: RefObject<unknown>
 ) {
   // https://www.jianshu.com/p/7cdc223d8e97  ..
   const {
