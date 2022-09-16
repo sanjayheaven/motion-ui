@@ -16,7 +16,7 @@ export default function Progress({ bar, trail, percent }: IProgressProps) {
   return (
     <AnimatePresence>
       <Motion.div className=" relative" {...fadeIn}>
-        {typeof bar === "function" ? bar({ percent }) : bar}
+        {bar}
         {(innerPercet >= 0 && (
           <Motion.div
             initial={false}
@@ -24,7 +24,7 @@ export default function Progress({ bar, trail, percent }: IProgressProps) {
             exit={{ width: -1, opacity: 0 }}
             className={` absolute top-0 bottom-0 h-full `}
           >
-            {trail}
+            {typeof trail === "function" ? trail({ percent }) : trail}
           </Motion.div>
         )) || <></>}
       </Motion.div>
