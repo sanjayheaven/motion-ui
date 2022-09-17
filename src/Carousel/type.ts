@@ -22,7 +22,7 @@ export interface ICarouselProps {
   loop?: boolean;
   /** whether autoplay, default false */
   autoplay?: boolean;
-  /** autoplay interval, default 200ms */
+  /** autoplay interval, default 2000ms */
   interval?: number;
   /** wrapper className */
   className?: string;
@@ -32,4 +32,6 @@ export interface ICarouselProps {
   next?: ReactNode | (({ handleNext }: { handleNext?: () => void }) => void);
   /** dots ReactNode */
   dots?: ReactNode | ((params: IDotsFunciton) => void);
+  /** callback when page change */
+  onChange?: ({ page }: { page?: number }) => void;
 }

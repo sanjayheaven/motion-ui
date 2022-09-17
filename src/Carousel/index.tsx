@@ -2,16 +2,19 @@ import { AnimatePresence, MotionProps, useMotionValue } from "framer-motion";
 import { motion as Motion, animate } from "framer-motion";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { isArray } from "../_common/utils/bool";
-import { useSize, useThrottleFn } from "ahooks";
+import { useInterval, useSize, useThrottleFn } from "ahooks";
 import { ICarouselProps, IDotsFunciton } from "./type";
 
 export default function Carousel({
   children,
   className = "",
   dragFree = false,
+  autoplay = false,
+  interval = 3000,
   next,
   prev,
   dots,
+  onChange,
 }: ICarouselProps) {
   const [page, setPage] = useState(0); // from 0
   const newChildren = useMemo(
@@ -19,6 +22,16 @@ export default function Carousel({
     [children]
   );
   const childrenCount = useMemo(() => newChildren.length, newChildren);
+  const newChildrenArrary = useMemo(
+    () => new Array(childrenCount).fill(null).map((_, index: number) => index),
+    [childrenCount]
+  );
+
+  const handleSetPage = (page: number) => {
+    setPage(page);
+    onChange?.({ page });
+  };
+
   const minPage = 0;
   const maxPage = useMemo(
     () => (childrenCount >= 1 ? childrenCount - 1 : 0),
@@ -39,13 +52,25 @@ export default function Carousel({
   );
   const maxRight = 0;
 
-  const calcX = useCallback(
-    (v: number) => v * -1 * wrapperWidth,
+  const calcXByPage = useCallback(
+    (page: number) => page * -1 * wrapperWidth,
     [wrapperWidth]
   );
-  const x = useMotionValue(0);
 
+  const x = useMotionValue(0);
   const [percent, setPercent] = useState(0);
+
+  useEffect(() => {
+    if (!autoplay) return;
+  }, [autoplay]);
+
+  useInterval(() => {
+    if (!autoplay) return;
+    if (page == maxPage) {
+      handleSetPage(minPage);
+    }
+    handleNext();
+  }, interval);
 
   const { run } = useThrottleFn(
     () => setPercent(Math.abs(x.get() / maxLeft) * 100),
@@ -59,19 +84,19 @@ export default function Carousel({
   }, []);
 
   const handleNext = () => {
-    if (page >= maxPage) return animate(x, calcX(maxPage));
+    if (page >= maxPage) return animate(x, calcXByPage(maxPage));
     const newValue = page >= maxPage ? maxPage : page + 1;
-    setPage(newValue);
+    handleSetPage(newValue);
   };
   const handlePrev = () => {
-    if (page <= minPage) return animate(x, calcX(0));
+    if (page <= minPage) return animate(x, calcXByPage(0));
     const newValue = page <= minPage ? minPage : page - 1;
-    setPage(newValue);
+    handleSetPage(newValue);
   };
 
   const goTo: IDotsFunciton["goTo"] = (page: number) => {
     if (page < minPage || page > maxPage) return;
-    setPage(page);
+    handleSetPage(page);
   };
 
   const handleDragEnd: MotionProps["onDragEnd"] = (e, { offset }) => {
@@ -81,11 +106,11 @@ export default function Carousel({
     } else if (offset.x < -wrapperWidth / 2) {
       handleNext();
     } else {
-      animate(x, calcX(page));
+      animate(x, calcXByPage(page));
     }
   };
   useEffect(() => {
-    const controls = animate(x, calcX(page));
+    const controls = animate(x, calcXByPage(page));
     return controls.stop;
   }, [page]);
 
@@ -96,12 +121,12 @@ export default function Carousel({
         {/* container */}
         <Motion.div
           ref={containerRef}
-          className=" w-full h-full flex overflow-hidden relative"
+          className=" w-full h-full overflow-hidden flex relative"
         >
           <>
             {/* children */}
             <AnimatePresence>
-              {newChildren.map((item, index) => {
+              {newChildrenArrary.map((item, index) => {
                 return (
                   <Motion.div
                     key={index}
@@ -111,7 +136,7 @@ export default function Carousel({
                     onDragEnd={handleDragEnd}
                     dragConstraints={{ left: maxLeft, right: maxRight }}
                   >
-                    {item}
+                    {newChildren[item]}
                   </Motion.div>
                 );
               })}
