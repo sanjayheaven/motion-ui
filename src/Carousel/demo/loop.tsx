@@ -1,4 +1,4 @@
-import { Carousel, Progress } from "headless-motion";
+import { Carousel } from "headless-motion";
 /**
  * Default use for Carousel
  */

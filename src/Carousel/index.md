@@ -19,10 +19,6 @@ nav:
 
 <code src="./demo/dragFree.tsx"> </code>
 
-### Loop
-
-<code src="./demo/loop.tsx"> </code>
-
 ## Props
 
 |   Name    |         Desc          |    Type     | Default |

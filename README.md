@@ -13,7 +13,7 @@ Headless Motion
 
 <div align="center">
 
-A React library to combine the idea of Headless UI with [Framer Motion](https://www.framer.com/motion/) to make development easier.
+A React UI library to combine the idea of Headless UI with Framer Motion to make development easier.
 
 </div>
 
@@ -27,7 +27,7 @@ A React library to combine the idea of Headless UI with [Framer Motion](https://
 ## ✨ Features
 
 - 🎨 Completely unstyled, fully accessible UI components
-- 🌈 Less code to declare animations based on [Framer Motion](https://www.framer.com/motion/)
+- 🌈 Less code to declare animations based on Framer Motion
 - 🛡 Developed with TypeScript, provides a complete type definition file
 
 ## 📚 Docs
