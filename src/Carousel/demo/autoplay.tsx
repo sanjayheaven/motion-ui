@@ -1,7 +1,5 @@
 import { Carousel } from "headless-motion";
-/**
- * Default use for Carousel
- */
+
 export default function App() {
   return (
     <Carousel

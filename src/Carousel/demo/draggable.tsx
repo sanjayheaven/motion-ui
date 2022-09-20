@@ -1,3 +1,7 @@
+/**
+ * title: Draggable Set False
+ */
+
 import { Carousel, Progress } from "headless-motion";
 import { CaretLeft, CaretRight } from "phosphor-react";
 
@@ -5,6 +9,7 @@ export default function App() {
   return (
     <Carousel
       className=" w-full h-[300px]"
+      draggable={false}
       dots={({ active, maxPage, goTo }) => {
         console.log(active, maxPage);
         const arr = new Array(maxPage + 1).fill(null);

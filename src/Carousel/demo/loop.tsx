@@ -1,8 +1,6 @@
 import { Carousel, Progress } from "headless-motion";
 import { CaretLeft, CaretRight } from "phosphor-react";
-/**
- * Default use for Carousel
- */
+
 export default function App() {
   return (
     <Carousel

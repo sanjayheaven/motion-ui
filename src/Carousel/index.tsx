@@ -1,13 +1,16 @@
-import { MotionProps, MotionStyle, useMotionValue } from "framer-motion";
+import { AnimatePresence, MotionProps, MotionStyle } from "framer-motion";
 import { motion as Motion, animate } from "framer-motion";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { isArray } from "../_common/utils/bool";
-import { useInterval, useSize, useThrottleFn } from "ahooks";
+import { useInterval, useThrottleFn } from "ahooks";
 import { ICarouselProps, IDotsFunciton } from "./type";
+import { useWidth } from "./hooks/useWidth";
+import { useChildren } from "./hooks/useChildren";
+import { useTransformX } from "./hooks/useTransformX";
 
 export default function Carousel({
   children,
   className = "",
+  draggable = true,
   dragFree = false,
   loop = false,
   autoplay = false,
@@ -18,30 +21,20 @@ export default function Carousel({
   onChange,
 }: ICarouselProps) {
   const [page, setPage] = useState(0); // from 0
-  const newChildren = useMemo(
-    () => (isArray(children) ? children : [children]),
-    [children]
-  );
-  const childrenCount = useMemo(() => newChildren.length || 0, newChildren);
+  const [percent, setPercent] = useState(0);
 
-  const newChildrenArrary = useMemo(
-    () => new Array(childrenCount).fill(null).map((_, index: number) => index),
-    [childrenCount]
-  );
+  const { newChildren, childrenCount } = useChildren(children);
 
   const minPage = 0;
   const maxPage = useMemo(
     () => (childrenCount >= 1 ? childrenCount - 1 : 0),
     [childrenCount]
   );
+
   const wrapperRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const wrapperSize = useSize(wrapperRef);
-  const wrapperWidth = useMemo(
-    () => wrapperSize?.width || 0,
-    [wrapperSize?.width]
-  );
+  const wrapperWidth = useWidth(wrapperRef);
 
   /** maxLeft should be negative */
   const maxLeft = useMemo(
@@ -51,12 +44,12 @@ export default function Carousel({
   const maxRight = 0;
 
   /** calc the transform x according to the page */
+  const { x, minPageX, maxPageX } = useTransformX();
 
-  const x = useMotionValue(0);
-  const minPageX = useMotionValue(0);
-  const maxPageX = useMotionValue(0);
-
-  const [percent, setPercent] = useState(0);
+  const calcXByPage = useCallback(
+    (page: number) => -page * wrapperWidth,
+    [wrapperWidth]
+  );
 
   const handleSetPage = (page: number) => {
     setPage(page);
@@ -64,18 +57,12 @@ export default function Carousel({
     onChange?.({ page });
   };
 
+  /** autoplay interval */
   useInterval(() => {
     if (!autoplay) return;
-    if (!loop && page == maxPage) {
-      goTo(minPage);
-    }
+    if (!loop && page == maxPage) return goTo(minPage);
     handleNext();
   }, interval);
-
-  const calcXByPage = useCallback(
-    (page: number) => page * -1 * wrapperWidth,
-    [wrapperWidth]
-  );
 
   const { run } = useThrottleFn(
     () => {
@@ -108,12 +95,11 @@ export default function Carousel({
     console.log(x.isAnimating(), "next");
     if (!loop && page == maxPage) return;
     if (childrenCount <= 1) return;
-    // if loop, back to minPage, when current page is maxPage
     animate(x, calcXByPage(page + 1), {
       type: "tween",
       onComplete: () => {
         if (x.get() < maxLeft) {
-          x.set(0);
+          x.set(maxRight);
           minPageX.set(0);
         }
       },
@@ -125,7 +111,6 @@ export default function Carousel({
     console.log(x.isAnimating(), "prev");
     if (!loop && page == minPage) return;
     if (childrenCount <= 1) return;
-    // if loop, go to maxPage, when current page is minPage
     animate(x, calcXByPage(page - 1), {
       type: "tween",
       onComplete: () => {
@@ -139,8 +124,8 @@ export default function Carousel({
   };
 
   const goTo: IDotsFunciton["goTo"] = (page: number) => {
-    animate(x, calcXByPage(page), { type: "tween" });
     if (page < minPage || page > maxPage) return;
+    animate(x, calcXByPage(page), { type: "tween" });
     handleSetPage(page);
   };
 
@@ -178,26 +163,26 @@ export default function Carousel({
           {/* container */}
           <Motion.div
             ref={containerRef}
-            drag="x"
+            drag={(draggable && "x") || undefined}
             dragConstraints={{ left: maxLeft, right: maxRight }}
             onDragEnd={handleDragEnd}
             className=" w-full h-full whitespace-nowrap "
             style={{ x }}
           >
             <>
-              {/* <AnimatePresence> */}
-              {newChildrenArrary.map((item, index) => {
-                return (
-                  <Motion.div
-                    key={index}
-                    className=" w-full h-full inline-block "
-                    style={calcStyle(index)}
-                  >
-                    {newChildren[item]}
-                  </Motion.div>
-                );
-              })}
-              {/* </AnimatePresence> */}
+              <AnimatePresence>
+                {new Array(childrenCount).fill(null).map((item, index) => {
+                  return (
+                    <Motion.div
+                      key={index}
+                      className=" w-full h-full inline-block "
+                      style={calcStyle(index)}
+                    >
+                      {newChildren[index]}
+                    </Motion.div>
+                  );
+                })}
+              </AnimatePresence>
             </>
           </Motion.div>
 
