@@ -7,9 +7,9 @@ export default function App() {
     <Carousel
       className=" w-full h-[300px]"
       autoplay
-      dots={({ active, childrenCount, goTo }) => {
+      dots={({ active, maxPage, goTo }) => {
         console.log(active);
-        const arr = new Array(childrenCount).fill(null);
+        const arr = new Array(maxPage + 1).fill(null);
         return (
           <>
             <div className=" absolute bottom-2 left-1/2 translate-x-[-50%]">
@@ -34,20 +34,28 @@ export default function App() {
     >
       <div
         key={1}
-        className="h-full bg-gradient-to-r from-cyan-500 to-blue-500"
-      ></div>
+        className=" text-white text-5xl flex items-center justify-center h-full bg-gradient-to-r from-cyan-500 to-blue-500"
+      >
+        1
+      </div>
       <div
         key={2}
-        className="h-full bg-gradient-to-r from-sky-500 to-indigo-500"
-      ></div>
+        className=" text-white text-5xl flex items-center justify-center h-full bg-gradient-to-r from-sky-500 to-indigo-500"
+      >
+        2
+      </div>
       <div
         key={3}
-        className="h-full bg-gradient-to-r from-violet-500 to-fuchsia-500"
-      ></div>
+        className=" text-white text-5xl flex items-center justify-center h-full bg-gradient-to-r from-violet-500 to-fuchsia-500"
+      >
+        3
+      </div>
       <div
         key={4}
-        className="h-full bg-gradient-to-r from-purple-500 to-pink-500"
-      ></div>
+        className=" text-white text-5xl flex items-center justify-center h-full bg-gradient-to-r from-purple-500 to-pink-500"
+      >
+        4
+      </div>
     </Carousel>
   );
 }
