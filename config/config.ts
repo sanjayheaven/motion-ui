@@ -7,6 +7,7 @@ export default defineConfig({
   favicon: "/logo.png",
   title: "Headless Motion",
   mode: "site",
+  locales: [["en-US", "English"]],
 
   // here tailwind only for documents
   scripts: [

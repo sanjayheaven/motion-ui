@@ -27,20 +27,28 @@ export default function App() {
     >
       <div
         key={1}
-        className="h-full bg-gradient-to-r from-cyan-500 to-blue-500"
-      ></div>
+        className=" text-white text-5xl flex items-center justify-center h-full bg-gradient-to-r from-cyan-500 to-blue-500"
+      >
+        1
+      </div>
       <div
         key={2}
-        className="h-full bg-gradient-to-r from-sky-500 to-indigo-500"
-      ></div>
+        className=" text-white text-5xl flex items-center justify-center h-full bg-gradient-to-r from-sky-500 to-indigo-500"
+      >
+        2
+      </div>
       <div
         key={3}
-        className="h-full bg-gradient-to-r from-violet-500 to-fuchsia-500"
-      ></div>
+        className=" text-white text-5xl flex items-center justify-center h-full bg-gradient-to-r from-violet-500 to-fuchsia-500"
+      >
+        3
+      </div>
       <div
         key={4}
-        className="h-full bg-gradient-to-r from-purple-500 to-pink-500"
-      ></div>
+        className=" text-white text-5xl flex items-center justify-center h-full bg-gradient-to-r from-purple-500 to-pink-500"
+      >
+        4
+      </div>
     </Carousel>
   );
 }
