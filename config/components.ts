@@ -14,6 +14,7 @@ export const menus = [
       "Popover",
       "Progress",
       "Skeleton",
+      "Slider",
       "Tag",
     ],
   },

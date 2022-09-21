@@ -30,6 +30,9 @@ import type { IProgressProps } from "./Progress/type";
 import Skeleton from "./Skeleton";
 import type { ISkeletonProps } from "./Skeleton/type";
 
+import Slider from "./Slider";
+import type { ISliderProps } from "./Slider/type";
+
 import Tag from "./Tag";
 import type { ITagProps } from "./Tag/type";
 
@@ -50,6 +53,7 @@ export {
   Popover,
   Progress,
   Skeleton,
+  Slider,
   Tag,
 };
 
@@ -64,5 +68,6 @@ export type {
   IPopoverProps,
   IProgressProps,
   ISkeletonProps,
+  ISliderProps,
   ITagProps,
 };
