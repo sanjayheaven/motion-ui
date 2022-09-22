@@ -1,23 +1,16 @@
-import { useThrottleFn } from "ahooks";
+import type { MotionProps } from "framer-motion";
+import type { ISliderProps } from "./type";
 import {
-  animate,
   AnimatePresence,
   motion as Motion,
   useMotionValue,
 } from "framer-motion";
 
-import React, {
-  MouseEventHandler,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useRect } from "../_common/hooks/useRect";
 import { useWidth } from "../_common/hooks/useWidth";
 
 import { fadeIn } from "../_common/utils/presets";
-import { ISliderProps } from "./type";
 
 export default function Slider({
   bar,
@@ -36,19 +29,43 @@ export default function Slider({
   const barRef = useRef<HTMLDivElement>(null);
   const trailRef = useRef<HTMLDivElement>(null);
   const handleRef = useRef<HTMLDivElement>(null);
+  const barWidth = useWidth(barRef);
+  const trailWidth = useWidth(trailRef);
+  const handleWidth = useWidth(handleRef);
+  const barRect = useRect(barRef);
+
+  const validValueArray = [];
+  for (let i = min; i <= max; i += step) {
+    validValueArray.push(i);
+  }
+
+  /** make sure value passed from min to max */
+  const transformValueToStepValue = (value: number) => {
+    for (let i = 0; i <= validValueArray.length - 1; i++) {
+      if (validValueArray[i] == value) {
+        return value;
+      }
+      if (validValueArray[i] < value && value < validValueArray[i + 1]) {
+        let diffWithPrev = value - validValueArray[i];
+        let diffWithNext = validValueArray[i + 1] - value;
+        return diffWithNext > diffWithPrev
+          ? validValueArray[i]
+          : validValueArray[i + 1];
+      }
+    }
+  };
 
   const handleChange = (value: number) => {
     let newValue = value;
     newValue = newValue < min ? min : newValue;
     newValue = newValue > max ? max : newValue;
-    setInnerValue(newValue);
-    onChange?.(newValue);
+    let newStepValue = transformValueToStepValue(newValue);
+    setInnerValue(newStepValue);
+    let newTransformX = calcX(newStepValue);
+    x.set(newTransformX);
+    if (newStepValue == innerValue) return;
+    onChange?.(newStepValue);
   };
-  const barWidth = useWidth(barRef);
-  const trailWidth = useWidth(trailRef);
-  const handleWidth = useWidth(handleRef);
-
-  const barRect = useRect(barRef);
 
   const x = useMotionValue(0);
 
@@ -57,10 +74,11 @@ export default function Slider({
     return ((value - min) / (max - min)) * barWidth;
   };
 
-  /** calc value by transform-x */
+  /** calc value by transform-x, return value is integer */
   const calcValue = (x: number) => {
     if (!barWidth) return 0;
-    return (x / barWidth) * (max - min) + min;
+    let newValue = (x / barWidth) * (max - min) + min;
+    return Math.round(newValue);
   };
 
   useEffect(() => {
@@ -68,50 +86,32 @@ export default function Slider({
     x.set(transformX); // do not use animate here, here only do data Synchronize
   }, [value, barWidth, min, max]);
 
-  const handleXChange = () => {
-    const currentX = x.get();
-    const newValue = Math.round(calcValue(currentX));
-    if (innerValue == newValue) return newValue;
-    console.log(newValue, currentX, innerValue);
-    handleChange(newValue);
-    return newValue;
-  };
-
-  const { run } = useThrottleFn(
-    () => {
-      handleXChange();
-    },
-    { wait: 0 }
-  );
-
-  useEffect(() => {
-    // here, may re-create a new onXChange. Thus will not get latest value
-    const unsubscribeX = x.onChange(run);
-    return () => unsubscribeX();
-  }, []);
-
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const clientX = e.clientX;
     const barClientX = barRect.left;
     const newTransformX = clientX - barClientX;
-    // x.set(newTransformX);
-    animate(x, newTransformX); // whether  should open this animation ????
-    console.log(clientX, barClientX, newTransformX, "handleClick");
+    let newValue = calcValue(newTransformX);
+    handleChange(newValue);
   };
   useEffect(() => {
-    if (value <= min) return handleChange(min);
-    if (value >= max) return handleChange(max);
-    setInnerValue(value);
+    handleChange(value);
   }, [value]);
+
+  const handleDrag: MotionProps["onDrag"] = (e, { offset }) => {
+    let newTransformX = x.get();
+    let newValue = calcValue(newTransformX);
+    console.log(newTransformX, newValue, 191999);
+    handleChange(newValue);
+  };
 
   return (
     <AnimatePresence>
-      <Motion.div className=" relative w-full" {...fadeIn}>
+      <Motion.div className=" relative" {...fadeIn}>
         <div onClick={(e) => handleClick(e)} ref={barRef}>
           {bar}
         </div>
 
-        {(innerValue >= 0 && (
+        {(innerValue >= min && innerValue <= max && (
           <>
             {/* trail node */}
             <Motion.div
@@ -132,16 +132,9 @@ export default function Slider({
               dragMomentum={false}
               // dragConstraints={barRef}
               // can use useTransform here.  to calc barwidth
+              // dragConstraints={{ left: 0, right: barWidth }}
               dragConstraints={{ left: 0, right: barWidth }}
-              onDragEnd={(e, { offset }) => {
-                console.log("dragend");
-                console.log(offset.x);
-
-                // let newValue = handleXChange();
-                // newValue = newValue < min ? min : newValue;
-                // newValue = newValue > min ? max : newValue;
-                // onAfterChange?.(newValue);
-              }}
+              onDrag={handleDrag}
               className=" absolute top-1/2"
               style={{ translateY: "-50%", translateX: "-50%", x }}
             >

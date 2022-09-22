@@ -15,6 +15,10 @@ nav:
 
 <code src="./demo/rectangle.tsx"> </code>
 
+### Step
+
+<code src="./demo/step.tsx"> </code>
+
 ## Props
 
 |   Name   |                Desc                 |         Type          | Default |
