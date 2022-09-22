@@ -8,6 +8,7 @@ export const menus = [
       "Collapse",
       "Drawer",
       "Dropdown",
+      "Input",
       "message",
       "Modal",
       "notification",
