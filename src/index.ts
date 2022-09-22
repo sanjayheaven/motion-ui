@@ -14,7 +14,10 @@ import Collapse from "./Collapse";
 import type { ICollapseProps } from "./Collapse/type";
 
 import Drawer from "./Drawer";
-import type { IDrawerProps } from "./Drawer";
+import type { IDrawerProps } from "./Drawer/type";
+
+import Input from "./Input";
+import type { IInputProps } from "./Input/type";
 
 import message from "./message";
 
@@ -47,6 +50,7 @@ export {
   Carousel,
   Collapse,
   Drawer,
+  Input,
   message,
   Modal,
   notification,
@@ -64,6 +68,7 @@ export type {
   ICarouselProps,
   ICollapseProps,
   IDrawerProps,
+  IInputProps,
   IModalProps,
   IPopoverProps,
   IProgressProps,
