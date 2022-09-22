@@ -46,8 +46,8 @@ export default function Slider({
         return value;
       }
       if (validValueArray[i] < value && value < validValueArray[i + 1]) {
-        let diffWithPrev = value - validValueArray[i];
-        let diffWithNext = validValueArray[i + 1] - value;
+        const diffWithPrev = value - validValueArray[i];
+        const diffWithNext = validValueArray[i + 1] - value;
         return diffWithNext > diffWithPrev
           ? validValueArray[i]
           : validValueArray[i + 1];
@@ -59,9 +59,9 @@ export default function Slider({
     let newValue = value;
     newValue = newValue < min ? min : newValue;
     newValue = newValue > max ? max : newValue;
-    let newStepValue = transformValueToStepValue(newValue);
+    const newStepValue = transformValueToStepValue(newValue);
     setInnerValue(newStepValue);
-    let newTransformX = calcX(newStepValue);
+    const newTransformX = calcX(newStepValue);
     x.set(newTransformX);
     if (newStepValue == innerValue) return;
     onChange?.(newStepValue);
@@ -77,7 +77,7 @@ export default function Slider({
   /** calc value by transform-x, return value is integer */
   const calcValue = (x: number) => {
     if (!barWidth) return 0;
-    let newValue = (x / barWidth) * (max - min) + min;
+    const newValue = (x / barWidth) * (max - min) + min;
     return Math.round(newValue);
   };
 
@@ -90,7 +90,7 @@ export default function Slider({
     const clientX = e.clientX;
     const barClientX = barRect.left;
     const newTransformX = clientX - barClientX;
-    let newValue = calcValue(newTransformX);
+    const newValue = calcValue(newTransformX);
     handleChange(newValue);
   };
   useEffect(() => {
@@ -98,8 +98,8 @@ export default function Slider({
   }, [value]);
 
   const handleDrag: MotionProps["onDrag"] = (e, { offset }) => {
-    let newTransformX = x.get();
-    let newValue = calcValue(newTransformX);
+    const newTransformX = x.get();
+    const newValue = calcValue(newTransformX);
     console.log(newTransformX, newValue, 191999);
     handleChange(newValue);
   };
