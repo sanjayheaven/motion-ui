@@ -6,6 +6,7 @@ export const menus = [
       "BackTop",
       "Button",
       "Collapse",
+      "Checkbox",
       "Drawer",
       "Dropdown",
       "Input",

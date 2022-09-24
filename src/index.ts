@@ -10,6 +10,9 @@ import type { IButtonProps } from "./Button/type";
 import Carousel from "./Carousel";
 import type { ICarouselProps } from "./Carousel/type";
 
+import Checkbox from "./Checkbox";
+import type { ICheckboxProps } from "./Checkbox/type";
+
 import Collapse from "./Collapse";
 import type { ICollapseProps } from "./Collapse/type";
 
@@ -48,6 +51,7 @@ export {
   BackTop,
   Button,
   Carousel,
+  Checkbox,
   Collapse,
   Drawer,
   Input,
@@ -66,6 +70,7 @@ export type {
   IBackTopProps,
   IButtonProps,
   ICarouselProps,
+  ICheckboxProps,
   ICollapseProps,
   IDrawerProps,
   IInputProps,
