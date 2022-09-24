@@ -9,7 +9,7 @@ export default function () {
         value={60}
         bar={<div className="  h-[20px] bg-[#f2f2f2] " />}
         trail={
-          <div className=" h-[20px] bg-gradient-to-r from-cyan-500 to-blue-500 "></div>
+          <div className=" h-[20px] bg-gradient-to-r from-sky-500 to-indigo-500 "></div>
         }
         handle={
           <>

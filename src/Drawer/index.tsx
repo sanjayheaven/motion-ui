@@ -35,5 +35,3 @@ export default function Drawer({
     </Pop>
   );
 }
-
-export * from "./type";
