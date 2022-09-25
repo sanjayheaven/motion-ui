@@ -1,18 +1,13 @@
 import { ReactNode } from "react";
 
-interface ITailFunction {
-  value: number;
-}
-
 type IMark = Record<number, ReactNode>;
 
 export interface ISwitchProps {
   className?: string;
-  /** Switch bar */
   /** checked */
   checked?: boolean;
   /** callback when check change */
   onChange?: (checked: boolean) => void;
-  /** */
+  /** child node, you can define handle here */
   children?: ReactNode | ((checked: { checked: boolean }) => ReactNode);
 }

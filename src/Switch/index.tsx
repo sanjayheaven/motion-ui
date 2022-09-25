@@ -1,6 +1,5 @@
 import type { ISwitchProps } from "./type";
-import { motion as Motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useMerge } from "../_common/hooks/useMerge";
 
 export default function Switch({
   checked,
@@ -8,12 +7,9 @@ export default function Switch({
   className = "",
   children,
 }: ISwitchProps) {
-  const [innerChecked, setInnerChecked] = useState(false);
-  useEffect(() => {
-    setInnerChecked(checked);
-  }, [checked]);
+  const [innerChecked, setInnerChecked] = useMerge(checked);
   return (
-    <Motion.div
+    <div
       className={className}
       onClick={() => {
         setInnerChecked(!innerChecked);
@@ -21,6 +17,6 @@ export default function Switch({
       }}
     >
       {typeof children === "function" ? children?.({ checked }) : children}
-    </Motion.div>
+    </div>
   );
 }
