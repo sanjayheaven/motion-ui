@@ -22,6 +22,9 @@ import type { IDrawerProps } from "./Drawer/type";
 import Input from "./Input";
 import type { IInputProps } from "./Input/type";
 
+import Menu from "./Menu";
+import type { IMenuProps } from "./Menu/type";
+
 import message from "./message";
 
 import Modal from "./Modal";
@@ -58,6 +61,7 @@ export {
   Collapse,
   Drawer,
   Input,
+  Menu,
   message,
   Modal,
   notification,
@@ -78,6 +82,7 @@ export type {
   ICollapseProps,
   IDrawerProps,
   IInputProps,
+  IMenuProps,
   IModalProps,
   IPopoverProps,
   IProgressProps,
