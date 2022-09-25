@@ -17,6 +17,7 @@ export const menus = [
       "Progress",
       "Skeleton",
       "Slider",
+      "Switch",
       "Tag",
     ],
   },

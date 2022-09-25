@@ -39,6 +39,9 @@ import type { ISkeletonProps } from "./Skeleton/type";
 import Slider from "./Slider";
 import type { ISliderProps } from "./Slider/type";
 
+import Switch from "./Switch";
+import type { ISwitchProps } from "./Switch/type";
+
 import Tag from "./Tag";
 import type { ITagProps } from "./Tag/type";
 
@@ -62,6 +65,7 @@ export {
   Progress,
   Skeleton,
   Slider,
+  Switch,
   Tag,
 };
 
@@ -79,5 +83,6 @@ export type {
   IProgressProps,
   ISkeletonProps,
   ISliderProps,
+  ISwitchProps,
   ITagProps,
 };
