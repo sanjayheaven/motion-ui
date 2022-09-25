@@ -15,14 +15,16 @@ export default function Demo() {
   return (
     <>
       <Progress
-        className=" relative h-[10px] bg-[#f2f2f2] rounded-xl"
+        className=" h-[10px] bg-[#f2f2f2] rounded-xl"
         percent={percent}
-      >
-        <motion.div
-          animate={{ width: `${percent}%` }}
-          className={` absolute h-[10px] bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-xl `}
-        ></motion.div>
-      </Progress>
+        trail={
+          <>
+            <div
+              className={`h-[10px] bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-xl `}
+            ></div>
+          </>
+        }
+      />
 
       <div className=" flex items-center gap-2 mt-4">
         <Button
