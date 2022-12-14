@@ -10,10 +10,10 @@ export interface IProgressProps {
   percent?: number;
   /** trail child node */
   trail?: ReactNode | (({ percent }: ITailFunction) => ReactNode);
-  /** whether show animation in trail node */
-  active?: boolean;
-  /** className */
+  /** bar className */
   className?: string;
   /** trail motion  */
   motion?: MotionProps;
+  /** whether show animation in trail node */
+  active?: boolean;
 }

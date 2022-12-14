@@ -12,7 +12,7 @@ export default function Menu({
   return (
     <div className={className}>
       {items.map((item) => {
-        return <div>{item.label}</div>;
+        return <div key={item.value}>{item.label}</div>;
       })}
     </div>
   );

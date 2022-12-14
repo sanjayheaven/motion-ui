@@ -32,7 +32,7 @@ export default function Progress({
         {(innerPercent >= 0 && (
           <Motion.div
             {...(motion || defaultMotion)}
-            className={` absolute top-0 bottom-0 h-full `}
+            className=" absolute h-full"
           >
             {typeof trail === "function" ? trail({ percent }) : trail}
           </Motion.div>
